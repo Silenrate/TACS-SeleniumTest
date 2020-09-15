@@ -42,11 +42,22 @@ public class TesterImpl implements Tester {
 
     @Override
     public void search(String value, int amount) {
-        driverWait(webDriver, 20000);
+        driverWait(webDriver, 30000);
         //Se pone el valor a buscar
         WebElement webElement = webDriver.findElement(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
         webElement.sendKeys(value);
-        //FALTA MIRAR SI LOS amount ELEMENTOS A BUSCAR POSEEN EL VALOR DE BÚSQUEDA
+        //Miramos si los nombres de los resultados poseen el valor de la búsqueda
+        for (int i = 1; i <= amount; i++) {
+            String xpath = "//*[@id=\"comunidadTable\"]/tbody/tr[" + i + "]/td[2]";
+            webElement = webDriver.findElement(By.xpath(xpath));
+            String nombre = webElement.getText();
+            if (nombre.contains(value)) {
+                System.out.println("Si aparezco");
+            } else {
+                System.out.println("No aparezco");
+            }
+        }
+
 
     }
 }
