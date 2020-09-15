@@ -7,7 +7,10 @@ public class SeleniumWebDriver {
     public static void main(String[] args) {
         Tester tester = new TesterImpl("http://ecibrary.herokuapp.com/");
         tester.login("santiago.aponte@mail.escuelaing.edu.co", "invitado");
-        tester.search("Economia",5);
+        //El amount debe ser menor que 10
+        tester.search("Economia", 5);
+        tester.close();
+        tester.showResults();
     }
 }
 

@@ -1,6 +1,7 @@
 package com.eci.tacs.testers;
 
 import com.eci.tacs.drivers.Drivers;
+import com.eci.tacs.notifiers.Notifier;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ public class TesterImpl implements Tester {
         try {
             Thread.sleep(waitTime);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Notifier.addNotification("Error de espera en thread");
         }
     }
 
@@ -47,17 +48,29 @@ public class TesterImpl implements Tester {
         WebElement webElement = webDriver.findElement(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
         webElement.sendKeys(value);
         //Miramos si los nombres de los resultados poseen el valor de la búsqueda
+        int correctName = 0;
         for (int i = 1; i <= amount; i++) {
             String xpath = "//*[@id=\"comunidadTable\"]/tbody/tr[" + i + "]/td[2]";
             webElement = webDriver.findElement(By.xpath(xpath));
             String nombre = webElement.getText();
             if (nombre.contains(value)) {
-                System.out.println("Si aparezco");
+                Notifier.addNotification("El valor número " + i + " si posee el valor a buscar");
+                correctName++;
             } else {
-                System.out.println("No aparezco");
+                Notifier.addNotification("El valor número " + i + " no posee el valor a buscar");
             }
         }
+        int percentOfCorrectCases = (correctName / amount) * 100;
+        Notifier.addNotification(String.format("El %d%% de los casos revisados fueron correctos", percentOfCorrectCases));
+    }
 
+    @Override
+    public void showResults() {
+        Notifier.printNotifications();
+    }
 
+    @Override
+    public void close() {
+        if (webDriver != null) webDriver.close();
     }
 }
