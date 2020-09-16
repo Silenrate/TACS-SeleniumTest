@@ -81,4 +81,42 @@ public class TesterImpl implements Tester {
         }
         return webDriver.findElement(locator);
     }
+
+    public void addReserva(){
+        System.out.println("Add reserva");
+        WebElement elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/aside/nav/ul/li[2]")));
+        //WebElement elm = webDriver.findElement(By.xpath("/html/body/aside/nav/ul/li[2]"));
+        elm.click();
+        //WebElement elm2 = webDriver.findElement(By.xpath("/html/body/aside/nav/ul/li[2]/ul/li"));
+        //WebElement elm2 = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/aside/nav/ul/li[2]/ul/li")));
+        //elm2.click();
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[1]/td[7]")));
+        //elm = webDriver.findElement(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[1]/td[7]/center"));
+        elm.click();
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[2]/td/center/form/button")));
+        //elm = webDriver.findElement(By.xpath("//*[@id=\"j_idt39:536:j_idt41:boton1\"]"));
+        elm.click();
+        ///html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[2]/div[1]/table/tbody/tr/td[2]
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[2]/div[1]/table/tbody/tr/td[2]")));
+        elm.click();
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[2]/div[1]/table/tbody/tr/td[2]")));
+        //elm.click();
+        ///html/body/section/form/div[2]/div[2]/table/tbody/tr[1]/td[2]/input
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/section/form/div[2]/div[2]/table/tbody/tr[1]/td[2]/input")));
+        elm.click();
+        elm.sendKeys("Test-App");
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("html/body/section/form/div[2]/div[2]/table/tbody/tr[5]/td[2]/select")));
+        elm.sendKeys("1");
+        /////html/body/section/form/div[2]/div[2]/table/tbody/tr[5]/td[2]/select
+
+        elm = webDriver.findElement(By.xpath("/html/body/section/form/div[2]/div[2]/table/tbody/tr[6]/td[2]/button"));
+        elm.click();
+        webDriver.navigate().refresh();
+        ////*[@id="j_idt39:schedule_container"]/div[2]/div/table/tbody/tr/td/div/div/div[3]/div[2]/table/tbody/tr/td[4]/a/div/span[2]
+        elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[3]/div[2]/table/tbody/tr/td[4]/a/div/span[2]")));
+        String text = elm.getText();
+        System.out.println(text);
+        System.out.println(text.contains("santiago.aponte@mail.escuelaing.edu.co"));
+        webDriver.close();
+    }
 }

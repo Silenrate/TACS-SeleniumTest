@@ -12,4 +12,6 @@ public interface Tester {
     void showResults();
 
     void close() throws TestException;
+
+    void addReserva();
 }
