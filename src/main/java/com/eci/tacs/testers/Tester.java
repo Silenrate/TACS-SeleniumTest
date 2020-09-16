@@ -1,8 +1,15 @@
 package com.eci.tacs.testers;
 
+import com.eci.tacs.drivers.Drivers;
+
 public interface Tester {
-    void login(String username, String password);
-    void search(String value, int amount);
+    void setUpDriver(Drivers driver);
+
+    void login(String username, String password) throws TestException;
+
+    void search(String value, int amount) throws TestException;
+
     void showResults();
-    void close();
+
+    void close() throws TestException;
 }
