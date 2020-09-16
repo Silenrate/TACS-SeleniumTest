@@ -2,9 +2,9 @@ package com.eci.tacs.testers;
 
 import com.eci.tacs.drivers.Drivers;
 import com.eci.tacs.notifiers.Notifier;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TesterImpl implements Tester {
 
@@ -15,19 +15,10 @@ public class TesterImpl implements Tester {
         this.url = url;
     }
 
-    private void driverWait(WebDriver webDriver, long waitTime) {
-        System.out.println("Estoy esperando a que " + webDriver.getCurrentUrl() + " cargue completamente");
-        try {
-            Thread.sleep(waitTime);
-        } catch (InterruptedException e) {
-            Notifier.addNotification("Error de espera en thread");
-        }
-    }
-
     @Override
     public void login(String username, String password) {
         //POR DEFECTO LO HICE CON EDGE
-        webDriver = Drivers.EDGE.getWebDriver();
+        webDriver = Drivers.CHROME.getWebDriver();
         webDriver.get(url);
         //Se va a la pagina de login
         webDriver.findElement(By.xpath("//*[@id=\"hero\"]/div/div/div[2]/a[1]")).click();
@@ -41,11 +32,22 @@ public class TesterImpl implements Tester {
         webDriver.findElement(By.xpath("//*[@id=\"frm:j_idt9\"]/span")).click();
     }
 
+    public WebElement element(By locator) {
+        int timeoutLimitSeconds = 200;
+        WebDriverWait wait = new WebDriverWait(webDriver, timeoutLimitSeconds);
+        try {
+            //Espera a que el tiempo acordado hasta que elemento aparezca en la página
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            throw new NoSuchElementException(locator.toString());
+        }
+        return webDriver.findElement(locator);
+    }
+
     @Override
     public void search(String value, int amount) {
-        driverWait(webDriver, 30000);
-        //Se pone el valor a buscar
-        WebElement webElement = webDriver.findElement(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
+        //Se pone el valor a buscar, este elemento se tarda en cargar y por eso se usa el método element
+        WebElement webElement = element(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
         webElement.sendKeys(value);
         //Miramos si los nombres de los resultados poseen el valor de la búsqueda
         int correctName = 0;
