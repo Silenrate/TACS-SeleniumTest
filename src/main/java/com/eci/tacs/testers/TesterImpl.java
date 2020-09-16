@@ -39,6 +39,7 @@ public class TesterImpl implements Tester {
     @Override
     public void search(String value, int amount) throws TestException {
         if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
+        Notifier.addNotification(String.format("PRUEBA DE BÚSQUEDA DE PARAMETRO \"%s\" SOBRE LOS %d PRIMEROS RESULTADOS :", value, amount));
         //Se pone el valor a buscar, este elemento se tarda en cargar y por eso se usa el método element
         WebElement webElement = element(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
         webElement.sendKeys(value);
@@ -56,34 +57,13 @@ public class TesterImpl implements Tester {
             }
         }
         int percentOfCorrectCases = (correctName / amount) * 100;
-        Notifier.addNotification(String.format("El %d%% de los casos revisados fueron correctos", percentOfCorrectCases));
+        Notifier.addNotification(String.format("El %d%% de los casos revisados fueron correctos %n", percentOfCorrectCases));
     }
 
     @Override
-    public void showResults() {
-        Notifier.printNotifications();
-    }
-
-    @Override
-    public void close() throws TestException {
+    public void addReserva(String username) throws TestException {
         if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
-        webDriver.close();
-    }
-
-    public WebElement element(By locator) {
-        int timeoutLimitSeconds = 200;
-        WebDriverWait wait = new WebDriverWait(webDriver, timeoutLimitSeconds);
-        try {
-            //Espera a que el tiempo acordado hasta que elemento aparezca en la página
-            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        } catch (TimeoutException e) {
-            throw new NoSuchElementException(locator.toString());
-        }
-        return webDriver.findElement(locator);
-    }
-
-    public void addReserva(){
-        System.out.println("Add reserva");
+        Notifier.addNotification("PRUEBA DE RESERVA DE EQUIPO :");
         WebElement elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/aside/nav/ul/li[2]")));
         //WebElement elm = webDriver.findElement(By.xpath("/html/body/aside/nav/ul/li[2]"));
         elm.click();
@@ -115,8 +95,33 @@ public class TesterImpl implements Tester {
         ////*[@id="j_idt39:schedule_container"]/div[2]/div/table/tbody/tr/td/div/div/div[3]/div[2]/table/tbody/tr/td[4]/a/div/span[2]
         elm = new WebDriverWait(webDriver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[3]/div[2]/table/tbody/tr/td[4]/a/div/span[2]")));
         String text = elm.getText();
-        System.out.println(text);
-        System.out.println(text.contains("santiago.aponte@mail.escuelaing.edu.co"));
+        if (text.contains(username)) {
+            Notifier.addNotification("La reserva se realizó exitosamente \n");
+        } else {
+            Notifier.addNotification("La reserva no se realizó \n");
+        }
+    }
+
+    @Override
+    public void showResults() {
+        Notifier.printNotifications();
+    }
+
+    @Override
+    public void close() throws TestException {
+        if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
         webDriver.close();
+    }
+
+    public WebElement element(By locator) {
+        int timeoutLimitSeconds = 200;
+        WebDriverWait wait = new WebDriverWait(webDriver, timeoutLimitSeconds);
+        try {
+            //Espera a que el tiempo acordado hasta que elemento aparezca en la página
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            throw new NoSuchElementException(locator.toString());
+        }
+        return webDriver.findElement(locator);
     }
 }

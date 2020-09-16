@@ -9,9 +9,9 @@ public interface Tester {
 
     void search(String value, int amount) throws TestException;
 
+    void addReserva(String username) throws TestException;
+
     void showResults();
 
     void close() throws TestException;
-
-    void addReserva();
 }
