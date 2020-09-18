@@ -2,6 +2,8 @@ package com.eci.tacs.testers;
 
 import com.eci.tacs.drivers.Drivers;
 
+import java.io.IOException;
+
 public interface Tester {
     void setUpDriver(Drivers driver);
 
@@ -12,6 +14,8 @@ public interface Tester {
     void addReserva(String username) throws TestException;
 
     void showResults();
+
+    void writeResults() throws IOException;
 
     void close() throws TestException;
 }

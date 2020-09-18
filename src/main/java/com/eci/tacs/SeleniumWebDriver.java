@@ -6,11 +6,11 @@ import com.eci.tacs.testers.Tester;
 import com.eci.tacs.testers.TesterImpl;
 
 public class SeleniumWebDriver {
-    public static void main(String[] args) throws TestException {
+    public static void main(String[] args) throws Exception {
         Tester tester = new TesterImpl("http://ecibrary.herokuapp.com/");
         String username = "santiago.aponte@mail.escuelaing.edu.co";
         String password = "invitado";
-        //Por defecto lo hice con Edge, para mirar los demás drivers verificar enumeración de Drivers
+        //Por defecto fue realizado con Microsoft Edge, para mirar los demás drivers verificar enumeración de Drivers
         Drivers driver = Drivers.EDGE;
         tester.setUpDriver(driver);
         tester.login(username, password);
@@ -22,6 +22,7 @@ public class SeleniumWebDriver {
         tester.addReserva(username);
         tester.close();
         tester.showResults();
+        tester.writeResults();
     }
 }
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+
 public class TesterImpl implements Tester {
 
     private final String url;
@@ -64,15 +66,15 @@ public class TesterImpl implements Tester {
     public void addReserva(String username) throws TestException {
         if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
         Notifier.addNotification("PRUEBA DE RESERVA DE EQUIPO :");
-        //Va a la seccion de ver recursos disponibles
+        //Va a la sección de ver recursos disponibles
         WebElement elm = element(By.xpath("/html/body/aside/nav/ul/li[2]"));
-        //Ingresa a la seccion ver recursos disponibles
+        //Ingresa a la sección ver recursos disponibles
         elm.click();
-        //selecciona la el boton de reserva para el primer item
-        elm =  element(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[1]/td[7]"));
-        //Da click para habilitar el boton
+        //selecciona la el botón de reserva para el primer item
+        elm = element(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[1]/td[7]"));
+        //Da click para habilitar el botón
         elm.click();
-        //Al cargar la vista selecciona el boton para realizar la reserva
+        //Al cargar la vista selecciona el botón para realizar la reserva
         elm = element(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[2]/td/center/form/button"));
         elm.click();
         //Selecciona en el calendario la fecha 07/09/2020
@@ -104,6 +106,11 @@ public class TesterImpl implements Tester {
     @Override
     public void showResults() {
         Notifier.printNotifications();
+    }
+
+    @Override
+    public void writeResults() throws IOException {
+        Notifier.writeNotifications();
     }
 
     @Override

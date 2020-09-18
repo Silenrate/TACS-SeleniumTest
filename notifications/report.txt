@@ -1,0 +1,12 @@
+Thu Sep 17 19:41:35 COT 2020
+PRUEBA DE BÚSQUEDA DE PARAMETRO "Economia" SOBRE LOS 5 PRIMEROS RESULTADOS :
+El valor número 1 si posee el valor a buscar
+El valor número 2 si posee el valor a buscar
+El valor número 3 si posee el valor a buscar
+El valor número 4 si posee el valor a buscar
+El valor número 5 si posee el valor a buscar
+El 100% de los casos revisados fueron correctos 
+
+PRUEBA DE RESERVA DE EQUIPO :
+La reserva se realizó exitosamente 
+
