@@ -16,9 +16,7 @@ public class SeleniumWebDriver {
         tester.login(username, password);
         //El amount debe ser menor que 10 para esta implementación
         tester.search("Economia", 5);
-        tester.close();
-        tester.setUpDriver(driver);
-        tester.login(username, password);
+        tester.reload();
         tester.addReserva(username);
         tester.close();
         tester.showResults();

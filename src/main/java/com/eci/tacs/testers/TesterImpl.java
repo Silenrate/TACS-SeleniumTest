@@ -119,6 +119,12 @@ public class TesterImpl implements Tester {
         webDriver.close();
     }
 
+    @Override
+    public void reload() throws TestException {
+        if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
+        webDriver.get(url + "/faces/comunidadInicio.xhtml");
+    }
+
     public WebElement element(By locator) {
         int timeoutLimitSeconds = 200;
         WebDriverWait wait = new WebDriverWait(webDriver, timeoutLimitSeconds);

@@ -18,4 +18,6 @@ public interface Tester {
     void writeResults() throws IOException;
 
     void close() throws TestException;
+
+    void reload() throws TestException;
 }
