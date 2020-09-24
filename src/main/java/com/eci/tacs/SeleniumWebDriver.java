@@ -18,6 +18,11 @@ public class SeleniumWebDriver {
         tester.search("Economia", 5);
         tester.reload();
         tester.addReserva(username);
+        tester.closeSession();
+        username = "xxxx";
+        password = "invitado";
+        tester.login(username, password);
+        tester.unCorrectLogin();
         tester.close();
         tester.showResults();
         tester.writeResults();

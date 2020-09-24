@@ -20,4 +20,8 @@ public interface Tester {
     void close() throws TestException;
 
     void reload() throws TestException;
+
+    void unCorrectLogin();
+
+    void closeSession();
 }

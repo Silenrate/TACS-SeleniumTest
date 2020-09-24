@@ -136,4 +136,21 @@ public class TesterImpl implements Tester {
         }
         return webDriver.findElement(locator);
     }
+
+    @Override
+    public void unCorrectLogin() {
+        WebElement elm = element(By.xpath("//*[@id=\"frm:messages\"]/div/ul/li/span[1]"));
+        System.out.println(elm.getText());
+        Notifier.addNotification("Result: "+elm.getText());
+        Notifier.addNotification("Expected: Unknown account");
+    }
+
+    @Override
+    public void closeSession() {
+        WebElement elm = element(By.xpath("/html/body/aside/nav/ul/li[4]"));
+        elm.click();
+        elm = element(By.xpath("/html/body/aside/nav/ul/li[4]/ul"));
+        elm.click();
+        Notifier.addNotification("Close session, actual url: "+webDriver.getCurrentUrl());
+    }
 }

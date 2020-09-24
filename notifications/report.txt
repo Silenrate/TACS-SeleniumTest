@@ -1,4 +1,4 @@
-Fri Sep 18 11:18:25 COT 2020
+Thu Sep 24 12:39:12 COT 2020
 PRUEBA DE BÚSQUEDA DE PARAMETRO "Economia" SOBRE LOS 5 PRIMEROS RESULTADOS :
 El valor número 1 si posee el valor a buscar
 El valor número 2 si posee el valor a buscar
@@ -10,3 +10,6 @@ El 100% de los casos revisados fueron correctos
 PRUEBA DE RESERVA DE EQUIPO :
 La reserva se realizó exitosamente 
 
+Close session, actual url: http://ecibrary.herokuapp.com/faces/index.html
+Result: Unknown account
+Expected: Unknown account
