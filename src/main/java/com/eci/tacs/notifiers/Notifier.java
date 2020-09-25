@@ -28,7 +28,7 @@ public class Notifier {
         try {
             fichero = new FileWriter("notifications/report.txt");
             pw = new PrintWriter(fichero);
-            pw.println(new Date());
+            pw.println(new Date()+"\n");
             notifications.forEach(pw::println);
         } catch (Exception e) {
             e.printStackTrace();

@@ -21,7 +21,7 @@ public interface Tester {
 
     void reload() throws TestException;
 
-    void unCorrectLogin();
+    void incorrectLogin(String username, String password) throws TestException;
 
     void closeSession();
 }

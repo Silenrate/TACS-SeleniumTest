@@ -19,10 +19,7 @@ public class SeleniumWebDriver {
         tester.reload();
         tester.addReserva(username);
         tester.closeSession();
-        username = "xxxx";
-        password = "invitado";
-        tester.login(username, password);
-        tester.unCorrectLogin();
+        tester.incorrectLogin("xxxx", "invitado");
         tester.close();
         tester.showResults();
         tester.writeResults();

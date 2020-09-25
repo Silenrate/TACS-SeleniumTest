@@ -1,15 +1,24 @@
-Thu Sep 24 12:39:12 COT 2020
-PRUEBA DE BÚSQUEDA DE PARAMETRO "Economia" SOBRE LOS 5 PRIMEROS RESULTADOS :
-El valor número 1 si posee el valor a buscar
-El valor número 2 si posee el valor a buscar
-El valor número 3 si posee el valor a buscar
-El valor número 4 si posee el valor a buscar
-El valor número 5 si posee el valor a buscar
-El 100% de los casos revisados fueron correctos 
+Thu Sep 24 21:19:45 COT 2020
 
-PRUEBA DE RESERVA DE EQUIPO :
-La reserva se realizó exitosamente 
+Trying to open session as santiago.aponte@mail.escuelaing.edu.co
+Open session success, actual url: http://ecibrary.herokuapp.com/faces/comunidadInicio.xhtml
+PARAMETER SEARCH TEST OF VALUE "Economia" OVER 5 RESULTS :
+The search number 1 has the name Economia 1 , this includes the search value Economia
+The search number 2 has the name Economia 1 , this includes the search value Economia
+The search number 3 has the name Economia 1 , this includes the search value Economia
+The search number 4 has the name Economia 1 , this includes the search value Economia
+The search number 5 has the name Economia 1 , this includes the search value Economia
+The 100% of checked cases were correct 
 
-Close session, actual url: http://ecibrary.herokuapp.com/faces/index.html
-Result: Unknown account
-Expected: Unknown account
+EQUIPMENT RESERVATION TEST :
+Attempting to reserve the resource...
+The user santiago.aponte@mail.escuelaing.edu.co make successfully the registry of the resource 
+
+Close session, actual url: http://ecibrary.herokuapp.com/faces/index.html 
+
+INVALID LOGIN TEST :
+Trying to open session as xxxx
+Open session failed, actual url: http://ecibrary.herokuapp.com/faces/login.xhtml
+Error Message Expected: Unknown account
+Error Message Obtained: Unknown account
+Invalid Login Test Successful
