@@ -18,6 +18,7 @@ public class SeleniumWebDriver {
         tester.search("Economia", 5);
         tester.reload();
         tester.addReserva(username);
+        tester.reviewPastReserve();
         tester.closeSession();
         tester.incorrectLogin("xxxx", "invitado");
         tester.close();

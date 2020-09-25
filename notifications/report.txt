@@ -1,4 +1,4 @@
-Thu Sep 24 21:19:45 COT 2020
+Fri Sep 25 18:32:50 COT 2020
 
 Trying to open session as santiago.aponte@mail.escuelaing.edu.co
 Open session success, actual url: http://ecibrary.herokuapp.com/faces/comunidadInicio.xhtml
@@ -14,6 +14,7 @@ EQUIPMENT RESERVATION TEST :
 Attempting to reserve the resource...
 The user santiago.aponte@mail.escuelaing.edu.co make successfully the registry of the resource 
 
+Here is needed to be 7:00pm - 8:00pm that is a reserve in September 18 in this hour, result: 7:00pm - 8:00pm
 Close session, actual url: http://ecibrary.herokuapp.com/faces/index.html 
 
 INVALID LOGIN TEST :

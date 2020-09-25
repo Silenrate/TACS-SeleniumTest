@@ -34,6 +34,7 @@ Para mostrar los resultados de la ejecución de las distintas pruebas se desarro
 
  * Solicitud de préstamos: Validamos que, para el usuario previamente autenticado, se pudiera registrar satisfactoriamente el prestamos de materia editorial de la escuela, y efectivamente dicho préstamo pueda ser evidenciado dentro del calendario de la aplicación. 
 
+ * Se revisa una reserva pasada que este con las horas que debe estar en el sistema
 ## Información necesaria: 
 
  * Para poder ejecutar las pruebas se requirió de credenciales de acceso de un usuario normal a la plataforma, ya que esta aplicación no posee sistema de registro, estas credenciales nos fueron suministradas por uno de los desarrolladores. 

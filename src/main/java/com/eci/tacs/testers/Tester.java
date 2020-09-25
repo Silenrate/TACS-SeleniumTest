@@ -24,4 +24,6 @@ public interface Tester {
     void incorrectLogin(String username, String password) throws TestException;
 
     void closeSession();
+
+    void reviewPastReserve();
 }

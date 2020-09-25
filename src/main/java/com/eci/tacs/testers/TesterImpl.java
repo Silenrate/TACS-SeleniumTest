@@ -173,11 +173,23 @@ public class TesterImpl implements Tester {
     @Override
     public void closeSession() {
         //Se selecciona el menu de ajustes
-        WebElement elm = element(By.xpath("/html/body/aside/nav/ul/li[4]"));
+        WebDriverWait wait = new WebDriverWait(webDriver,2);
+        WebElement elm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/aside/nav/ul/li[4]")));
         elm.click();
         //Se elige la opción de logout
         elm = element(By.xpath("/html/body/aside/nav/ul/li[4]/ul"));
         elm.click();
         Notifier.addNotification(String.format("Close session, actual url: %s %n", webDriver.getCurrentUrl()));
+    }
+
+    @Override
+    public void reviewPastReserve(){
+        WebElement buttonMisReservas = element(By.xpath("/html/body/aside/nav/ul/li[3]/a"));
+        buttonMisReservas.click();
+        WebDriverWait wait = new WebDriverWait(webDriver,2);
+        WebElement buttonReservasPasadas = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/aside/nav/ul/li[3]/ul/li[3]/a")));
+        buttonReservasPasadas.click();
+        WebElement elm = element(By.xpath("/html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/div/table/tbody/tr[4]/td[1]"));
+        Notifier.addNotification("Here is needed to be 7:00pm - 8:00pm that is a reserve in September 18 in this hour, result: " + elm.getText());
     }
 }
