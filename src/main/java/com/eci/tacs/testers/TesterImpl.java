@@ -37,6 +37,7 @@ public class TesterImpl implements Tester {
         //Se realiza el login
         webDriver.findElement(By.xpath("//*[@id=\"frm:j_idt9\"]/span")).click();
         Notifier.addNotification("Trying to open session as " + username);
+        //Espera a que el login se realice
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
