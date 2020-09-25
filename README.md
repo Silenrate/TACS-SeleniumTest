@@ -21,11 +21,13 @@ Para ello tuvimos que plantear un sistema de delay para acceder a los ítems del
 
 ## Estructura del proyecto Java 
 
-Dentro del proyecto se decidió por fines prácticos modularizar la lógica para gestionar los drives dentro de la aplicación, y definir una interfaz que nos definiera las características necesarias para las pruebas llamada Tester y la respectiva clase TesterImpl que se encarga de implementar la lógica requerida dentro del proyecto para que efectivamente las pruebas funcionen. 
+Dentro del proyecto se decidió por fines prácticos modularizar la lógica para gestionar los drivers dentro de la aplicación, y definir una interfaz que nos definiera las características necesarias para las pruebas llamada Tester y la respectiva clase TesterImpl que se encarga de implementar la lógica requerida dentro del proyecto para que efectivamente las pruebas funcionen. 
 
 Se definió también un enum de driver el cual nos sirve con el fin de gestionar los diferentes drivers de los diferentes browsers sobre los cuales podemos correr respectivamente cada una de las pruebas automatizadas, esto fue realizado con el fin de poder probar la interoperabilidad entre diferentes browsers de forma más dinámica y simple. 
 
 Para mostrar los resultados de la ejecución de las distintas pruebas se desarrolló una clase Notifier la cual nos permite al finalizar las pruebas, mostrar mediante consola o en un archivo de texto los resultados de la ejecución de las distintas pruebas planteadas en el aplicativo. 
+
+[](https://github.com/Silenrate/TACS-SeleniumTest/blob/master/diagram/class.PNG)
 
 ## Casos de Prueba: 
 
