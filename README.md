@@ -39,4 +39,4 @@ Para mostrar los resultados de la ejecución de las distintas pruebas se desarro
 
 ## Información necesaria: 
 
-Para poder ejecutar las pruebas se requirió de credenciales de acceso de un usuario normal a la plataforma, ya que esta aplicación no posee sistema de registro, estas credenciales nos fueron suministradas por uno de los desarrolladores. 
+ * Para poder ejecutar las pruebas se requirió de credenciales de acceso de un usuario normal a la plataforma, ya que esta aplicación no posee sistema de registro, estas credenciales nos fueron suministradas por uno de los desarrolladores. 
