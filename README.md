@@ -10,9 +10,6 @@ Con motivos del presente trabajo se determinó utilizar una aplicación que fue 
 
 URL de la aplicación: http://ecibrary.herokuapp.com/ 
 
-[Enlace Pagina Web](http://ecibrary.herokuapp.com/)
- 
-
 ## Consideraciones al momento de construir las pruebas: 
 
 Aunque la aplicación fue escrita completamente en java, tuvimos que considerar el hecho de que las librerías de JSF (Java Servlet Faces), y Primefaces para algunas características graficas de la aplicación implementan por debajo contenido JavaScript que no se encuentra disponible recién se abre la aplicación, ya que este requiere un procesado para posteriormente ser renderizado dentro del sitio web. 
