@@ -27,7 +27,7 @@ Se definió también un enum de driver el cual nos sirve con el fin de gestionar
 
 Para mostrar los resultados de la ejecución de las distintas pruebas se desarrolló una clase Notifier la cual nos permite al finalizar las pruebas, mostrar mediante consola o en un archivo de texto los resultados de la ejecución de las distintas pruebas planteadas en el aplicativo. 
 
-[](https://github.com/Silenrate/TACS-SeleniumTest/blob/master/diagram/class.PNG)
+![](https://github.com/Silenrate/TACS-SeleniumTest/blob/master/diagram/class.PNG)
 
 ## Casos de Prueba: 
 
