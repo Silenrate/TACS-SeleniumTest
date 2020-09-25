@@ -1,8 +1,6 @@
+# Taller Selenium Web Driver
 
-
-# Testing y Aseguramiento de la calidad 
-
-# Taller Selenium Web Driver 
+## Testing y Aseguramiento de la Calidad 
 
 ## Descripción de la plataforma a probar: 
 
