@@ -31,24 +31,22 @@ public class TesterImpl implements Tester {
         webDriver.findElement(By.xpath("//*[@id=\"hero\"]/div/div/div[2]/a[1]")).click();
         //Se ponen el nombre de usuario
         WebElement webElement = webDriver.findElement(By.id("frm:email"));
+        webElement.clear();
         webElement.sendKeys(username);
         //Se pone la contraseña
         webElement = webDriver.findElement(By.id("frm:j_idt7"));
+        webElement.clear();
         webElement.sendKeys(password);
         //Se realiza el login
         webDriver.findElement(By.xpath("//*[@id=\"frm:j_idt9\"]/span")).click();
         Notifier.addNotification("Trying to open session as " + username);
         //Espera a que el login se realice
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitOneSecond();
         String actualUrl = webDriver.getCurrentUrl();
-        if (actualUrl.equals("http://ecibrary.herokuapp.com/faces/comunidadInicio.xhtml")) {
-            Notifier.addNotification(String.format("Open session success, actual url: %s", actualUrl));
+        if (actualUrl.contains("Inicio.xhtml")) {
+            Notifier.addNotification(String.format("Open session success, actual url: %s %n", actualUrl));
         } else {
-            Notifier.addNotification(String.format("Open session failed, actual url: %s", actualUrl));
+            Notifier.addNotification(String.format("Open session failed, actual url: %s %n", actualUrl));
         }
 
     }
@@ -168,9 +166,9 @@ public class TesterImpl implements Tester {
         Notifier.addNotification("Error Message Expected: " + expectedValue);
         Notifier.addNotification("Error Message Obtained: " + errorMessage);
         if (errorMessage.equals(expectedValue)) {
-            Notifier.addNotification("Invalid Login Test Successful");
+            Notifier.addNotification("Invalid Login Test Successful \n");
         } else {
-            Notifier.addNotification("Invalid Login Test Failed");
+            Notifier.addNotification("Invalid Login Test Failed \n");
         }
 
     }
@@ -188,37 +186,74 @@ public class TesterImpl implements Tester {
     }
 
     @Override
-    public void reviewPastReserve(){
+    public void reviewPastReserve() throws TestException {
+        if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
+        Notifier.addNotification("REVIEW PAST RESERVATION TEST:");
         WebElement buttonMisReservas = element(By.xpath("/html/body/aside/nav/ul/li[3]/a"));
         buttonMisReservas.click();
         WebDriverWait wait = new WebDriverWait(webDriver,2);
         WebElement buttonReservasPasadas = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/aside/nav/ul/li[3]/ul/li[3]/a")));
         buttonReservasPasadas.click();
         WebElement elm = element(By.xpath("/html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/div/table/tbody/tr[4]/td[1]"));
+        Notifier.addNotification("Expected Hour: 7:00pm - 8:00pm");
+        Notifier.addNotification("Actual Hour: "+elm.getText());
         Notifier.addNotification("Here is needed to be 7:00pm - 8:00pm that is a reserve in September 18 in this hour, result: " + elm.getText());
+        if(elm.getText().equals("7:00pm - 8:00pm")){
+            Notifier.addNotification("Check Reservation Date Successful");
+        } else {
+            Notifier.addNotification("Check Reservation Date Failed");
+        }
     }
 
     @Override
-    public void cambiarEstadoDeUnRecurso() throws TestException {
-        if (webDriver == null) {
-            throw new TestException(TestException.DRIVER_NOT_SETUP);
-        }
+    public void alterResourceState(String resourceId) throws TestException {
+        if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
         Notifier.addNotification("CHANGE THE STATE OF A RESOURCE TEST:");
-
         //Se pone el valor a buscar, este elemento se tarda en cargar y por eso se usa el método element
-        WebElement webElement = element(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
-        webElement.sendKeys("2928");
-
+        WebElement webElement = element(By.xpath("//*[@id=\"initiativeTable_filter\"]/label/input"));
+        webElement.sendKeys(resourceId);
+        //se selecciona el elemento encontrado
         webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr/td[8]/center/i")).click();
+        //se elige la opción para modificar estado
         webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr[2]/td/center/button")).click();
-        webDriver.findElement(By.id("select"));
-
+        //se selecciona el combo box de los posibles estados
         Select estado = new Select(webDriver.findElement(By.id("select")));
+        //se escoge el estado Mantenimiento
         estado.selectByVisibleText("Mantenimiento");
-
         webDriver.findElement(By.xpath("//*[@id=\"InitiativeStatus:boton\"]")).click();
+        //se confirma el cambio
+        webDriver.switchTo().alert().accept();
+        //Se pone el valor a buscar, este elemento se tarda en cargar y por eso se usa el método element
+        webElement = element(By.xpath("//*[@id=\"initiativeTable_filter\"]/label/input"));
+        webElement.sendKeys(resourceId);
+        //se revisa el estado del recurso
+        String state;
+        webElement = element(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr/td[7]"));
+        state = webElement.getText();
+        Notifier.addNotification("Expected value: Mantenimiento");
+        Notifier.addNotification("Actual value: "+state);
+        if(state.equals("Mantenimiento")){
+            Notifier.addNotification("State Changed Successfully");
+        } else {
+            Notifier.addNotification("Failed State Change");
+        }
+        webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr/td[8]/center/i")).click();
+        //se elige la opción para modificar estado
+        webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr[2]/td/center/button")).click();
+        //se selecciona el combo box de los posibles estados
+        estado = new Select(webDriver.findElement(By.id("select")));
+        //se escoge el estado Disponible
+        estado.selectByVisibleText("Disponible");
+        webDriver.findElement(By.xpath("//*[@id=\"InitiativeStatus:boton\"]")).click();
+        //se confirma el cambio
+        webDriver.switchTo().alert().accept();
+    }
 
-
-
+    private void waitOneSecond(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,7 +1,8 @@
-Fri Sep 25 18:32:50 COT 2020
+Fri Sep 25 20:26:03 COT 2020
 
 Trying to open session as santiago.aponte@mail.escuelaing.edu.co
-Open session success, actual url: http://ecibrary.herokuapp.com/faces/comunidadInicio.xhtml
+Open session success, actual url: http://ecibrary.herokuapp.com/faces/comunidadInicio.xhtml 
+
 PARAMETER SEARCH TEST OF VALUE "Economia" OVER 5 RESULTS :
 The search number 1 has the name Economia 1 , this includes the search value Economia
 The search number 2 has the name Economia 1 , this includes the search value Economia
@@ -14,12 +15,25 @@ EQUIPMENT RESERVATION TEST :
 Attempting to reserve the resource...
 The user santiago.aponte@mail.escuelaing.edu.co make successfully the registry of the resource 
 
+REVIEW PAST RESERVATION TEST:
+Expected Hour: 7:00pm - 8:00pm
+Actual Hour: 7:00pm - 8:00pm
 Here is needed to be 7:00pm - 8:00pm that is a reserve in September 18 in this hour, result: 7:00pm - 8:00pm
+Check Reservation Date Successful
 Close session, actual url: http://ecibrary.herokuapp.com/faces/index.html 
 
 INVALID LOGIN TEST :
 Trying to open session as xxxx
-Open session failed, actual url: http://ecibrary.herokuapp.com/faces/login.xhtml
+Open session failed, actual url: http://ecibrary.herokuapp.com/faces/login.xhtml 
+
 Error Message Expected: Unknown account
 Error Message Obtained: Unknown account
-Invalid Login Test Successful
+Invalid Login Test Successful 
+
+Trying to open session as frasica
+Open session success, actual url: http://ecibrary.herokuapp.com/faces/adminInicio.xhtml 
+
+CHANGE THE STATE OF A RESOURCE TEST:
+Expected value: Mantenimiento
+Actual value: Disponible
+Failed State Change

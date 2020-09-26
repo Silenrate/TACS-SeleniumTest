@@ -25,7 +25,7 @@ public interface Tester {
 
     void closeSession();
 
-    void reviewPastReserve();
+    void reviewPastReserve() throws TestException;
 
-    void cambiarEstadoDeUnRecurso() throws TestException;
+    void alterResourceState(String resourceId) throws TestException;
 }

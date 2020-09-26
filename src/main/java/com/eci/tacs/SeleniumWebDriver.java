@@ -1,7 +1,6 @@
 package com.eci.tacs;
 
 import com.eci.tacs.drivers.Drivers;
-import com.eci.tacs.testers.TestException;
 import com.eci.tacs.testers.Tester;
 import com.eci.tacs.testers.TesterImpl;
 
@@ -21,12 +20,9 @@ public class SeleniumWebDriver {
         tester.reviewPastReserve();
         tester.closeSession();
         tester.incorrectLogin("xxxx", "invitado");
-        tester.close();
-
-        tester.setUpDriver(Drivers.EDGE);
         tester.login("frasica", "123");
-
-
+        tester.alterResourceState("2928");
+        tester.close();
         tester.showResults();
         tester.writeResults();
     }
