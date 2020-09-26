@@ -22,6 +22,11 @@ public class SeleniumWebDriver {
         tester.closeSession();
         tester.incorrectLogin("xxxx", "invitado");
         tester.close();
+
+        tester.setUpDriver(Drivers.EDGE);
+        tester.login("frasica", "123");
+
+
         tester.showResults();
         tester.writeResults();
     }

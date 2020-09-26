@@ -26,4 +26,6 @@ public interface Tester {
     void closeSession();
 
     void reviewPastReserve();
+
+    void cambiarEstadoDeUnRecurso() throws TestException;
 }

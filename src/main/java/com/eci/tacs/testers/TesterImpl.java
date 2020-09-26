@@ -4,6 +4,7 @@ import com.eci.tacs.drivers.Drivers;
 import com.eci.tacs.notifiers.Notifier;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
@@ -54,7 +55,9 @@ public class TesterImpl implements Tester {
 
     @Override
     public void search(String value, int amount) throws TestException {
-        if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
+        if (webDriver == null){
+            throw new TestException(TestException.DRIVER_NOT_SETUP);
+        }
         Notifier.addNotification(String.format("PARAMETER SEARCH TEST OF VALUE \"%s\" OVER %d RESULTS :", value, amount));
         //Se pone el valor a buscar, este elemento se tarda en cargar y por eso se usa el método element
         WebElement webElement = element(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
@@ -78,7 +81,9 @@ public class TesterImpl implements Tester {
 
     @Override
     public void addReserva(String username) throws TestException {
-        if (webDriver == null) throw new TestException(TestException.DRIVER_NOT_SETUP);
+        if (webDriver == null) {
+            throw new TestException(TestException.DRIVER_NOT_SETUP);
+        }
         Notifier.addNotification("EQUIPMENT RESERVATION TEST :");
         //Va a la sección de ver recursos disponibles
         WebElement elm = element(By.xpath("/html/body/aside/nav/ul/li[2]"));
@@ -191,5 +196,29 @@ public class TesterImpl implements Tester {
         buttonReservasPasadas.click();
         WebElement elm = element(By.xpath("/html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/div/table/tbody/tr[4]/td[1]"));
         Notifier.addNotification("Here is needed to be 7:00pm - 8:00pm that is a reserve in September 18 in this hour, result: " + elm.getText());
+    }
+
+    @Override
+    public void cambiarEstadoDeUnRecurso() throws TestException {
+        if (webDriver == null) {
+            throw new TestException(TestException.DRIVER_NOT_SETUP);
+        }
+        Notifier.addNotification("CHANGE THE STATE OF A RESOURCE TEST:");
+
+        //Se pone el valor a buscar, este elemento se tarda en cargar y por eso se usa el método element
+        WebElement webElement = element(By.xpath("//*[@id=\"comunidadTable_filter\"]/label/input"));
+        webElement.sendKeys("2928");
+
+        webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr/td[8]/center/i")).click();
+        webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr[2]/td/center/button")).click();
+        webDriver.findElement(By.id("select"));
+
+        Select estado = new Select(webDriver.findElement(By.id("select")));
+        estado.selectByVisibleText("Mantenimiento");
+
+        webDriver.findElement(By.xpath("//*[@id=\"InitiativeStatus:boton\"]")).click();
+
+
+
     }
 }
