@@ -2,6 +2,14 @@
 
 ## Testing y Aseguramiento de la Calidad 
 
+## Integrantes
+
+*   Jeisson G. Sanchez 
+*   Daniel Walteros 
+*   Orlando A. Gelves Kerguelen 
+*   Brayan Alexis Jiménez Moya 
+*   Juan Sebastián Frásica Galeano 
+
 ## Descripción de la plataforma a probar: 
 
 Con motivos del presente trabajo se determinó utilizar una aplicación que fue implementada como proyecto de otra asignatura, para la gestión y administración de libros y prestamos dentro de la biblioteca de la escuela, esta aplicación fue escrita en Java y desplegada sobre Heroku. 
@@ -26,15 +34,17 @@ Para mostrar los resultados de la ejecución de las distintas pruebas se desarro
 
 ## Casos de Prueba: 
 
- * Login: Validamos que un usuario previamente registrado este en capacidad de iniciar sesión satisfactoriamente. 
+ * **Login**: Validamos que un usuario previamente registrado este en capacidad de iniciar sesión satisfactoriamente. 
 
- * Login incorrecto: Validamos que se mostrara un mensaje de error en caso de que se llevara a cabo un login con credenciales incorrectas (inexistentes). 
+ * **Login incorrecto**: Validamos que se mostrara un mensaje de error en caso de que se llevara a cabo un login con credenciales incorrectas (inexistentes). 
 
- * Búsqueda de recurso por nombre: Con un usuario autenticado, filtramos la búsqueda de recursos por nombre y validamos que los cinco primeros resultados tuvieran en su nombre el valor por el cual filtramos. 
+ * **Búsqueda de recurso por nombre**: Con un usuario autenticado, filtramos la búsqueda de recursos por nombre y validamos que los cinco primeros resultados tuvieran en su nombre el valor por el cual filtramos. 
 
- * Solicitud de préstamos: Validamos que, para el usuario previamente autenticado, se pudiera registrar satisfactoriamente el prestamos de materia editorial de la escuela, y efectivamente dicho préstamo pueda ser evidenciado dentro del calendario de la aplicación. 
+ * **Solicitud de préstamos**: Validamos que, para el usuario previamente autenticado, se pudiera registrar satisfactoriamente el prestamos de materia editorial de la escuela, y efectivamente dicho préstamo pueda ser evidenciado dentro del calendario de la aplicación. 
 
- * Se revisa que se quedó guardada una reserva pasada, se verifica la fecha así se guarda un registro de log para su posterior verificación, la hora esperada debe ser igual a la que está en el sistema
+ * **Reserva pasada**: Se revisa que se quedó guardada una reserva pasada, se verifica la fecha así se guarda un registro de log para su posterior verificación, la hora esperada debe ser igual a la que está en el sistema
+ 
+ * **Cambiar estado de un recurso**: Se busca cierto recurso, y se le cambia su estado de “Disponible” a “Mantenimiento”. Luego, se valida que el cambio fue hecho y se revierte el cambio para mantener la integridad de los datos. 
 
 ## Información necesaria: 
 
