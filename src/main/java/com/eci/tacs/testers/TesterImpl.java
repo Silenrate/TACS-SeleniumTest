@@ -95,7 +95,8 @@ public class TesterImpl implements Tester {
         elm = element(By.xpath("/html/body/section/div/div[1]/div[2]/div/table/tbody/tr[2]/td/center/form/button"));
         elm.click();
         //Selecciona en el calendario la fecha 07/09/2020
-        elm = element(By.xpath("html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[2]/div[1]/table/tbody/tr/td[2]"));
+        //*[@id="j_idt39:schedule_container"]/div[2]/div/table/tbody/tr/td/div/div/div[5]/div[2]/table/thead/tr/td[7]
+        elm = element(By.xpath("//*[@id=\"j_idt39:schedule_container\"]/div[2]/div/table/tbody/tr/td/div/div/div[5]/div[2]/table/thead/tr/td[7]"));
         //Abre el model de registro de la reserva
         elm.click();
         //Ingresa el nombre de la reserva
@@ -106,14 +107,15 @@ public class TesterImpl implements Tester {
         elm = webDriver.findElement(By.xpath("html/body/section/form/div[2]/div[2]/table/tbody/tr[5]/td[2]/select"));
         elm.sendKeys("1");
         //Ejecuta la reserva
-        elm = webDriver.findElement(By.xpath("/html/body/section/form/div[2]/div[2]/table/tbody/tr[6]/td[2]/button"));
+        elm = element(By.xpath("/html/body/section/form/div[2]/div[2]/table/tbody/tr[6]/td[2]/button"));
         elm.click();
         Notifier.addNotification("Attempting to reserve the resource...");
         //Actualiza la pagina
         webDriver.navigate().refresh();
         //Verifica que dentro de el calendario se encuentre la reserva
-        elm = element(By.xpath("/html/body/section/form/table/tbody/tr/td/div/div/div[2]/div/table/tbody/tr/td/div/div/div[3]/div[2]/table/tbody/tr/td[4]/a/div/span[2]"));
+        elm = element(By.xpath("//*[@id=\"j_idt39:schedule_container\"]/div[2]/div/table/tbody/tr/td/div/div/div[5]/div[2]/table/tbody/tr/td[7]/a/div/span[2]"));
         String text = elm.getText();
+        System.out.println("Text: "+text);
         if (text.contains(username)) {
             Notifier.addNotification(String.format("The user %s make successfully the registry of the resource %n", username));
         } else {
@@ -241,7 +243,7 @@ public class TesterImpl implements Tester {
         //se elige la opción para modificar estado
         webDriver.findElement(By.xpath("//*[@id=\"initiativeTable\"]/tbody/tr[2]/td/center/button")).click();
         //se selecciona el combo box de los posibles estados
-        estado = new Select(webDriver.findElement(By.id("select")));
+        estado = new Select(element(By.id("select")));
         //se escoge el estado Disponible
         estado.selectByVisibleText("Disponible");
         webDriver.findElement(By.xpath("//*[@id=\"InitiativeStatus:boton\"]")).click();

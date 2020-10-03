@@ -1,4 +1,4 @@
-Sat Sep 26 13:08:34 COT 2020
+Fri Oct 02 20:35:06 COT 2020
 
 Trying to open session as santiago.aponte@mail.escuelaing.edu.co
 Open session success, actual url: http://ecibrary.herokuapp.com/faces/comunidadInicio.xhtml 
